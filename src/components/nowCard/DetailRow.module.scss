@@ -1,0 +1,36 @@
+@use '../../scss/variables' as *;
+
+.detailRow {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem 0;
+  border-bottom: 1px solid $color-section-today-line;
+
+  &:nth-last-child(1),
+  &:nth-last-child(2) {
+    border-bottom: 0;
+  }
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svgIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.detailLabel {
+  color: $color-card-today-muted;
+  font-weight: 600;
+}
+
+.detailValue {
+  font-weight: 600;
+}

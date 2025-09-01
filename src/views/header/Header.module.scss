@@ -1,0 +1,105 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.header {
+    width: 100%;
+    background: $color-header-bg;
+    color: $color-header-text;
+}
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem 1rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: .25rem 1rem;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.city {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    white-space: nowrap;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-left: auto;
+}
+
+.searchBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: $color-search-form-bg;
+    border-radius: .25rem;
+    color: $color-black;
+}
+
+.searchForm {
+    border: none;
+    padding: .375rem .5rem;
+    font-size: 1rem;
+    width: min(15rem, 75%);
+    flex: 1 1 auto;
+}
+
+.searchBtn {
+    background: $color-white;
+    border: none;
+    padding: .375rem .75rem;
+    border-left: 1px solid $color-search-bnt;
+    border-radius: 0 .25rem .25rem 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    white-space: nowrap;
+    min-width: 84px;
+}
+
+@include down($bp-md) {
+    .right {
+        order: 3;
+        width: 100%;
+    }
+
+    .left {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .searchBox {
+        width: 100%;
+    }
+
+    .searchForm {
+        width: 100%;
+    }
+
+    .city {
+        white-space: normal;
+    }
+
+    .logoText {
+        font-size: clamp(1.125rem, 4.5vw, 1.5rem);
+    }
+}

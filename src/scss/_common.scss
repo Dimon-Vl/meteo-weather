@@ -1,0 +1,46 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+#root {
+   min-height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+main {
+   flex: 1;
+   background-color: $color-main-bg;
+}
+
+body {
+   font-family: Arial, sans-serif;
+}
+
+.container {
+   width: $container-max-width;
+   margin: 0 auto;
+}
+
+@include down($container-max-width+$container-padding-desktop*2) {
+   .container {
+      width: 100%;
+      padding-left: $container-padding-desktop;
+      padding-right: $container-padding-desktop;
+   }
+}
+
+@include down($bp-lg) {
+   .container {
+      width: 100%;
+      padding-left: $container-padding-tablet;
+      padding-right: $container-padding-tablet;
+   }
+}
+
+@include down($bp-sm) {
+   .container {
+      width: 100%;
+      padding-left: $container-padding-mobile;
+      padding-right: $container-padding-mobile;
+   }
+}

@@ -1,0 +1,72 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.hours {
+  margin-top: 1rem;
+}
+
+.hoursScroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hoursGrid {
+  display: grid;
+  grid-auto-rows: auto;
+  align-items: stretch;
+    width: max-content;
+  grid-template-columns: 160px repeat(auto-fill, minmax(68px, 1fr));
+  border: 1px solid $color-section-today-line;
+  >* {
+    border: 1px solid $color-section-today-line;
+  }
+}
+
+.hoursLabel {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: $color-card-today-bg;
+  color: $color-card-today-muted;
+  font-weight: 600;
+  padding: .5rem .75rem;
+  border-bottom: 1px solid $color-section-today-line;
+  border-right: 1px solid $color-section-today-line;
+  height: 100%;
+}
+
+.hoursCell {
+  padding: .5rem .5rem;
+  text-align: center;
+  border-bottom: none;
+  height: 100%;
+}
+
+.hoursTime {
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hoursIcon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin: .125rem auto 0;
+}
+
+.svgIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+@include down ($bp-lg){
+  .hoursGrid {
+    grid-auto-rows: 44px;
+  }
+
+  .hoursLabel {
+    min-width: 140px;
+  }
+}

@@ -1,0 +1,66 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.navBar {
+    background: $color-nav-bg;
+    border-top: 1px solid $color-nav-border;
+    border-bottom: 1px solid $color-nav-border;
+}
+
+.navContainer {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.tablist {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.tab,
+.tabActive {
+    appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: .5rem 0;
+    font: 600 .95rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: $color-tab-text-color;
+    position: relative;
+    white-space: nowrap;
+    transition: color .15s ease;
+}
+
+.tab:hover {
+    color: $color-tab-text-color-hover;
+}
+
+.tabActive {
+    color: $color-tab-text-color-active;
+}
+
+.tabActive::after,
+.tab:hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -.55rem;
+    height: .125rem;
+    background: currentColor;
+    opacity: .9;
+}
+@include down($bp-sm) {
+    .tablist {
+        gap: 1.25rem;
+    }
+}

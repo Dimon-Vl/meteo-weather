@@ -1,0 +1,6 @@
+@use 'variables' as *;
+
+
+@mixin down($w) { 
+  @media (max-width: $w) { @content; }
+}

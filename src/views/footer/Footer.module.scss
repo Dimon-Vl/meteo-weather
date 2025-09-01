@@ -1,0 +1,52 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.footer {
+    background: $color-footer-bg;
+    color: $color-footer-text;
+    border-top: 1px solid $color-footer-border;
+}
+
+.footerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.logo {
+    height: 1.5rem;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $color-footer-text;
+}
+
+.meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: $color-footer-text-muted;
+}
+
+@include down($bp-md) {
+    .inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .meta {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

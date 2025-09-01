@@ -1,0 +1,98 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr fit-content(320px);
+  gap: 1rem;
+  padding-top: .75rem;
+}
+
+.hero {
+  display: grid;
+  align-content: start;
+  gap: .25rem;
+}
+
+.heroLabel {
+  color: $color-card-today-muted;
+  font-weight: 600;
+}
+
+.heroTemp {
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.sunBlock {
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: start;
+  justify-items: end;
+  padding-right: 2rem;
+}
+
+.sunArc {
+  color: $color-sun;
+}
+
+.sunTimes {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.sunItem {
+  display: flex;
+  gap: .35rem;
+  align-items: center;
+  color: $color-sun;
+  font-weight: 600;
+}
+
+.details {
+  margin-top: .75rem;
+  padding-top: .75rem;
+  border-top: 1px solid $color-section-today-line;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+  column-gap: 30px;
+}
+
+.windWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.weatherIcon{
+width: 70px;
+height: 70px;
+}
+.svgIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+@include down($bp-lg) {
+  .details {
+    grid-column: 1 / -1;
+  }
+}
+
+@include down($bp-md) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .sunBlock {
+    justify-items: start;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+  }
+}
