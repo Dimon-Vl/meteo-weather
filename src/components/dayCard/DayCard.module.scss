@@ -60,13 +60,3 @@
   display: block;
   flex: 0 0 auto;
 }
-
-@include down ($bp-lg){
-  .hoursGrid {
-    grid-auto-rows: 44px;
-  }
-
-  .hoursLabel {
-    min-width: 140px;
-  }
-}
