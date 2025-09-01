@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import L from "leaflet";
 import { CommonContext } from "../../context/commonContext";
 import CardWrapper from "../cardWrapper/CardWrapper";
 import 'leaflet/dist/leaflet.css';
 import s from "./Map.module.scss";
+import mapPin from "../../assets/img/mapPin.svg";
 
 const FlyTo = ({ position }) => {
   const map = useMap();
@@ -14,10 +16,17 @@ const FlyTo = ({ position }) => {
 };
 
 export default function Map() {
-  const { data} = useContext(CommonContext);
+  const { data } = useContext(CommonContext);
 
   let position = [50.4333, 30.5167];
   let cityName = "Київ";
+
+  const pinIcon = L.icon({
+    iconUrl: mapPin,
+    iconSize: [36, 36],
+    iconAnchor: [18, 34],
+    popupAnchor: [0, -28],
+  });
 
   if (data) {
     if (data.coord) {
@@ -38,7 +47,7 @@ export default function Map() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={position}>
+          <Marker position={position} icon={pinIcon}>
             <Popup>
               <h2>{cityName}</h2>
             </Popup>
