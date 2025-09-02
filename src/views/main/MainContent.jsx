@@ -14,6 +14,7 @@ const MainContent = () => {
                 {tab === "now" && <NowCard />}
                 {tab === "today" && <DayCard />}
                 {tab === "tomorrow" && <DayCard />}
+                {tab === "dayAfterTomorrow" && <DayCard />}
                 {tab === "five" && <DayCard />}
                 <Map/>
             </div>
