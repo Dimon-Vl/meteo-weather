@@ -7,6 +7,8 @@ export const baseUrl = ({ type = "weather", city = "Київ" }) => {
 export const tabs = [
     { key: "now", label: "Зараз" },
     { key: "today", label: "Сьогодні" },
+    { key: "tomorrow", label: "Завтра" },
+    { key: "five", label: "на 5 днів" },
 ];
 
 export const roundTo = (val, to = 0) => {
@@ -19,7 +21,6 @@ export const roundTo = (val, to = 0) => {
 
 export const fmtVisibility = (m) => {
     if (m == null) return "--";
-    if (m >= 10000) return "Без обмежень";
     if (m >= 1000) return `${roundTo(m / 1000, 1)} км`;
     return `${m} м`;
 };

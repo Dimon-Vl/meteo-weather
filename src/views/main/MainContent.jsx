@@ -13,6 +13,8 @@ const MainContent = () => {
             <div className={cn(s.mainContainer, "container")}>
                 {tab === "now" && <NowCard />}
                 {tab === "today" && <DayCard />}
+                {tab === "tomorrow" && <DayCard />}
+                {tab === "five" && <DayCard />}
                 <Map/>
             </div>
         </main>

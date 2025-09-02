@@ -3,19 +3,28 @@ import s from "./DayCard.module.scss";
 import { CommonContext } from "../../context/commonContext";
 import { img } from '../../global/img'
 import CardWrapper from "../cardWrapper/CardWrapper";
-import { fmtVisibility, roundTo, calcDewPointC } from "../../global/constAndFunc";
+import { fmtVisibility, roundTo, calcDewPointC, tabs } from "../../global/constAndFunc";
 
 const iconUrl = (code) => (code ? `https://openweathermap.org/img/wn/${code}.png` : null);
 
 const DayCard = () => {
-  const { data } = useContext(CommonContext);
+  const { data, tab } = useContext(CommonContext);
 
-  const { list = [],city } = data || {};
+  const { list = [], city } = data || {};
+  let day=[];
 
-  const today = list.slice(0, 8);
-  if (!today.length) return null;
+  if (tab === "today" && list.length) {
+    day = list.slice(0, 8);
+  } else if (tab === "tomorrow") {
+    const todayWeekday = new Date().toLocaleDateString("en-US", { weekday: "long" });
+    day = list.filter(e => new Date(e.dt_txt).toLocaleDateString("en-US", { weekday: "long" }) !== todayWeekday).slice(0, 8);
+  } else if (tab === "five") {
+    day = list.filter((_, i) => i % 8 === 0);
+  }
 
-  const cols = today.map((i) => {
+  if (!day.length) return null;
+
+  const cols = day.map((i) => {
     const temp = i.main?.temp;
     const hum = i.main?.humidity;
     return {
@@ -74,7 +83,7 @@ const DayCard = () => {
   ];
 
   return (
-    <CardWrapper title={"Погода сьогодні в "+city?.name}>
+    <CardWrapper title={`Погода в ${city?.name}`}>
       <div className={s.hours}>
         <div className={s.hoursScroller}>
           <div

@@ -14,7 +14,7 @@
   display: grid;
   grid-auto-rows: auto;
   align-items: stretch;
-    width: max-content;
+  width: 100%;
   grid-template-columns: 160px repeat(auto-fill, minmax(68px, 1fr));
   border: 1px solid $color-section-today-line;
   >* {
