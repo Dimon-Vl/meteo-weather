@@ -29,7 +29,7 @@ const DayCard = () => {
     const hum = i.main?.humidity;
     return {
       key: i.dt,
-      time: tab === "five"?i.dt_txt?.slice(0,10).split("-").reverse().join("."):i.dt_txt?.slice(11, 16),
+      time: tab === "five"?i.dt_txt?.slice(5,10).split("-").reverse().join("."):i.dt_txt?.slice(11, 16),
       icon: i.weather?.[0]?.icon,
       clouds: i.clouds?.all ?? "--",
       temp,
