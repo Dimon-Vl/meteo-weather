@@ -3,7 +3,7 @@ import s from "./DayCard.module.scss";
 import { CommonContext } from "../../context/commonContext";
 import { img } from '../../global/img'
 import CardWrapper from "../cardWrapper/CardWrapper";
-import { fmtVisibility, roundTo, calcDewPointC } from "../../global/constAndFunc";
+import { fmtVisibility, roundTo, calcDewPointC,tabs } from "../../global/constAndFunc";
 
 const iconUrl = (code) => (code ? `https://openweathermap.org/img/wn/${code}.png` : null);
 
@@ -87,7 +87,7 @@ const DayCard = () => {
   ];
 
   return (
-    <CardWrapper title={`Погода в ${city?.name}`}>
+    <CardWrapper title={`Погода ${tab?tabs.filter(e=>e.key===tab)[0].label.toLowerCase():""} в ${city?.name}`}>
       <div className={s.hours}>
         <div className={s.hoursScroller}>
           <div

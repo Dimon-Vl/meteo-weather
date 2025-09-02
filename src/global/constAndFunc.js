@@ -8,7 +8,7 @@ export const tabs = [
     { key: "now", label: "Зараз" },
     { key: "today", label: "Сьогодні" },
     { key: "tomorrow", label: "Завтра" },
-    { key: "dayAfterTomorrow", label: "Післязавтра" },
+    { key: "dayAfterTomorrow", label: "Після завтра" },
     { key: "five", label: "на 5 днів" },
 ];
 
