@@ -6,6 +6,7 @@ import CardWrapper from "../cardWrapper/CardWrapper";
 import 'leaflet/dist/leaflet.css';
 import s from "./Map.module.scss";
 import mapPin from "../../assets/img/mapPin.svg";
+import { DEFAULT_CITY,DEFAULT_POZITION } from "../../global/constAndFunc";
 
 const FlyTo = ({ position }) => {
   const map = useMap();
@@ -18,8 +19,8 @@ const FlyTo = ({ position }) => {
 export default function Map() {
   const { data } = useContext(CommonContext);
 
-  let position = [50.4333, 30.5167];
-  let cityName = "Київ";
+  let position = DEFAULT_POZITION;
+  let cityName = DEFAULT_CITY;
 
   const pinIcon = L.icon({
     iconUrl: mapPin,

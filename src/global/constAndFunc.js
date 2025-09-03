@@ -1,16 +1,24 @@
-export const apiKey = 'a8b8713d6186f33f473cd4c9c1688230'
+export const API_KEY = 'a8b8713d6186f33f473cd4c9c1688230'
 
-export const baseUrl = ({ type = "weather", city = "Київ" }) => {
-    return `https://api.openweathermap.org/data/2.5/${type}?q=${encodeURIComponent(city)}&units=metric&lang=uk&appid=${apiKey}`;
-}
+export const STORAGE_KEY = "sityStorage"
 
-export const tabs = [
+export const DEFAULT_CITY = "Київ"
+
+export const DEFAULT_POZITION = [50.4333, 30.5167];
+
+export const HOUR = 3600000
+
+export const TABS = [
     { key: "now", label: "Зараз" },
     { key: "today", label: "Сьогодні" },
     { key: "tomorrow", label: "Завтра" },
     { key: "dayAfterTomorrow", label: "Післязавтра" },
     { key: "five", label: "на 5 днів" },
 ];
+
+export const baseUrl = ({ type = "weather", city = "Київ" }) => {
+    return `https://api.openweathermap.org/data/2.5/${type}?q=${encodeURIComponent(city)}&units=metric&lang=uk&appid=${API_KEY}`;
+}
 
 export const roundTo = (val, to = 0) => {
     if (val == null) return "--";
@@ -49,3 +57,5 @@ export const getSunPosition = (sunrise, sunset, date = Date.now(), iconSize = 24
     const centerY = cy + r * Math.sin(angle);
     return { x: centerX - iconSize / 2, y: centerY - iconSize / 2 };
 };
+
+export const valueTrimLover =(value)=> value.trim().toLowerCase();
