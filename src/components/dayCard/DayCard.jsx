@@ -21,8 +21,7 @@ const DayCard = () => {
   } else if (tab === "dayAfterTomorrow") {
     const todayWeekday = new Date().toLocaleDateString("en-US", { weekday: "long" });
     day = list.filter(e => new Date(e.dt_txt).toLocaleDateString("en-US", { weekday: "long" }) !== todayWeekday).slice(8, 16);
-  }
-  else if (tab === "five") {
+  } else if (tab === "five") {
     day = list.filter((_, i) => i % 8 === 0);
   }
 

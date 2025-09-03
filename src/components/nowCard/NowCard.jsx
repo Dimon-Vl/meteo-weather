@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import s from "./NowCard.module.scss";
-import DetailRow from "./DetailRow";
+import DetailRow from "../detailRow/DetailRow";
 import CardWrapper from "../cardWrapper/CardWrapper";
 import { fmtVisibility, roundTo, fmtTime, calcDewPointC, getSunPosition } from "../../global/constAndFunc";
 import { img } from '../../global/img';
