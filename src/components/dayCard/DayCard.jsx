@@ -1,38 +1,42 @@
 import { Fragment, useContext } from "react";
 import s from "./DayCard.module.scss";
 import { CommonContext } from "../../context/commonContext";
-import { img } from '../../global/img'
+import { img } from "../../global/img";
 import CardWrapper from "../cardWrapper/CardWrapper";
-import { fmtVisibility, roundTo, calcDewPointC,TABS } from "../../global/constAndFunc";
+import { fmtVisibility, roundTo, calcDewPointC, TABS } from "../../global/constAndFunc";
 
 const iconUrl = (code) => (code ? `https://openweathermap.org/img/wn/${code}.png` : null);
 
 const DayCard = () => {
   const { data, tab } = useContext(CommonContext);
-
   const { list = [], city } = data || {};
-  let day=[];
 
+  const todayWeekday = new Date().toLocaleDateString("en-US", { weekday: "long" });
+
+  let day = [];
   if (tab === "today" && list.length) {
     day = list.slice(0, 8);
   } else if (tab === "tomorrow") {
-    const todayWeekday = new Date().toLocaleDateString("en-US", { weekday: "long" });
-    day = list.filter(e => new Date(e.dt_txt).toLocaleDateString("en-US", { weekday: "long" }) !== todayWeekday).slice(0, 8);
+    day = list
+      .filter(e => new Date(e.dt_txt).toLocaleDateString("en-US", { weekday: "long" }) !== todayWeekday)
+      .slice(0, 8);
   } else if (tab === "dayAfterTomorrow") {
-    const todayWeekday = new Date().toLocaleDateString("en-US", { weekday: "long" });
-    day = list.filter(e => new Date(e.dt_txt).toLocaleDateString("en-US", { weekday: "long" }) !== todayWeekday).slice(8, 16);
+    day = list
+      .filter(e => new Date(e.dt_txt).toLocaleDateString("en-US", { weekday: "long" }) !== todayWeekday)
+      .slice(8, 16);
   } else if (tab === "five") {
     day = list.filter((_, i) => i % 8 === 0);
   }
-
-  if (!day.length) return null;
 
   const cols = day.map((i) => {
     const temp = i.main?.temp;
     const hum = i.main?.humidity;
     return {
       key: i.dt,
-      time: tab === "five"?i.dt_txt?.slice(5,10).split("-").reverse().join("."):i.dt_txt?.slice(11, 16),
+      time:
+        tab === "five"
+          ? i.dt_txt?.slice(5, 10).split("-").reverse().join(".")
+          : i.dt_txt?.slice(11, 16),
       icon: i.weather?.[0]?.icon,
       clouds: i.clouds?.all ?? "--",
       temp,
@@ -55,7 +59,14 @@ const DayCard = () => {
         <>
           <div className={s.hoursTime}>{c.time}</div>
           {c.icon && (
-            <img className={s.hoursIcon} src={iconUrl(c.icon)} alt="" aria-hidden />
+            <img
+              className={s.hoursIcon}
+              src={iconUrl(c.icon)}
+              alt=""
+              aria-hidden
+              width={42}
+              height={42}
+            />
           )}
         </>
       ),
@@ -77,6 +88,8 @@ const DayCard = () => {
             className={s.svgIcon}
             src={img.arrow}
             alt=""
+            width={16}         
+            height={16}
             style={{ transform: `rotate(${c.windDeg}deg)` }}
           />
           <span>{roundTo(c.windSpd)}</span>
@@ -85,22 +98,29 @@ const DayCard = () => {
     },
   ];
 
+  const tabLabel = tab ? (TABS.find(e => e.key === tab)?.label || "").toLowerCase() : "";
+
+    const hasData = cols.length > 0;
+  const columnCount = hasData ? cols.length : 8;
+  const skeletonCols = Array.from({ length: columnCount }, (_, i) => ({ key: `s-${i}` }));
+
   return (
-    <CardWrapper title={`Погода ${tab?TABS.filter(e=>e.key===tab)[0].label.toLowerCase():""} в ${city?.name}`}>
+    <CardWrapper title={`Погода ${tabLabel} в ${city?.name || ""}`}>
       <div className={s.hours}>
         <div className={s.hoursScroller}>
           <div
             className={s.hoursGrid}
             style={{
-              gridTemplateColumns: `160px repeat(${cols.length}, minmax(68px, 1fr))`,
+              gridTemplateColumns: `160px repeat(${columnCount}, minmax(68px, 1fr))`,
+              minHeight: 260,
             }}
           >
-            {rows.map((row, i) => (
-              <Fragment key={i}>
+            {rows.map((row) => (
+              <Fragment key={row.label}>
                 <div className={s.hoursLabel}>{row.label}</div>
-                {cols.map((c) => (
+                {(hasData ? cols : skeletonCols).map((c) => (
                   <div key={`${row.label}-${c.key}`} className={s.hoursCell}>
-                    {row.render(c)}
+                    {hasData ? row.render(c) : "—"}
                   </div>
                 ))}
               </Fragment>

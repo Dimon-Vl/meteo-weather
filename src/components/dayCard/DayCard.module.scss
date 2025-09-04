@@ -3,11 +3,13 @@
 
 .hours {
   margin-top: 1rem;
+  min-height: 260px; 
 }
 
 .hoursScroller {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  will-change: transform;
 }
 
 .hoursGrid {
@@ -48,8 +50,8 @@
 }
 
 .hoursIcon {
-  width: 28px;
-  height: 28px;
+  width: 42px;
+  height: 42px;
   display: block;
   margin: .125rem auto 0;
 }
